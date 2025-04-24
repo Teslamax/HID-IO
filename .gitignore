@@ -1,0 +1,57 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Compiled files
+*.elf
+*.bin
+*.hex
+*.uf2
+*.map
+*.dmp
+
+# PlatformIO
+.pio/
+.vscode/
+.pioenvs/
+.clang_complete
+.gcc-flags.json
+
+# Arduino
+*.ino.*
+*.cpp.d
+*.cpp.o
+
+# KiCad
+**/fp-info-cache
+**/fp-lib-table
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*-cache.lib
+*-rescue.*
+*-backups/
+*.tmp
+*.bak
+
+# Build folders (common)
+build/
+out/
+dist/
+
+# OS / Tool-specific
+*.~*
+*.orig
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Backup files
+*.zip
+*.tar.gz
+*.7z
