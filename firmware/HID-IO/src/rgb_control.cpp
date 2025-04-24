@@ -2,6 +2,7 @@
 
 #include "rgb_control.h"
 #include <Arduino.h>
+#include <string.h>
 
 // RGB LED pins (active LOW)
 #define LED_RED_PIN    23  // P0.23
@@ -14,6 +15,30 @@ static uint8_t mode = 0;  // 0 = static, 1 = blink, 2 = breathe
 static uint32_t last_update = 0;
 static uint32_t effect_interval = 500;
 static bool effect_toggle = false;
+
+struct NamedColor {
+  const char* name;
+  uint8_t r, g, b;
+};
+
+const NamedColor color_table[] = {
+  {"red",    255, 0,   0},
+  {"green",  0,   255, 0},
+  {"blue",   0,   0,   255},
+  {"white",  255, 255, 255},
+  {"yellow", 255, 255, 0},
+  {"cyan",   0,   255, 255},
+  {"magenta",255, 0,   255},
+  {"off",    0,   0,   0},
+  {nullptr,  0,   0,   0}  // Sentinel
+};
+
+const NamedColor* find_named_color(const char* name) {
+  for (const NamedColor* c = color_table; c->name; ++c) {
+    if (strcmp(c->name, name) == 0) return c;
+  }
+  return nullptr;
+}
 
 void rgb_init() {
   pinMode(LED_RED_PIN, OUTPUT);
