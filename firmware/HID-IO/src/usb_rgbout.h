@@ -1,0 +1,1 @@
+void usb_rgbout_setup(); void usb_rgbout_loop();

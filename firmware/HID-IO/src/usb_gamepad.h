@@ -1,0 +1,1 @@
+void usb_gamepad_setup(); void usb_gamepad_loop();
