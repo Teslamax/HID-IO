@@ -8,6 +8,14 @@
 
 static bool echo_enabled = true;
 
+static String generate_serial_from_ficr() {
+  char serial_buf[17];
+  snprintf(serial_buf, sizeof(serial_buf), "%08lX%08lX",
+           (unsigned long)NRF_FICR->DEVICEID[1],
+           (unsigned long)NRF_FICR->DEVICEID[0]);
+  return String(serial_buf);
+}
+
 void usb_cdc_setup() {
   Serial.begin(115200);
   while (!Serial) delay(10);
@@ -38,10 +46,11 @@ void usb_cdc_loop() {
 void handle_cdc_command(const char* cmd) {
   if (strcmp(cmd, "/help") == 0) {
     Serial.println("\n🔧 Available commands:");
-    Serial.println("  /help      - show this list");
-    Serial.println("  /ping      - reply with pong");
-    Serial.println("  /uptime    - show millis uptime");
-    Serial.println("  /usbinfo   - show USB descriptors");
+    Serial.println("  /help        - show this list");
+    Serial.println("  /ping        - reply with pong");
+    Serial.println("  /uptime      - show millis uptime");
+    Serial.println("  /usbinfo     - show USB descriptors");
+    Serial.println("  /ficr        - show FICR raw values");
     Serial.println("  /echo on|off - toggle echo");
   } else if (strcmp(cmd, "/ping") == 0) {
     Serial.println("🏓 pong");
@@ -55,7 +64,12 @@ void handle_cdc_command(const char* cmd) {
     Serial.print("  PID: 0x"); Serial.println(USB_PID, HEX);
     Serial.print("  Manufacturer: "); Serial.println(USB_MANUFACTURER);
     Serial.print("  Product: "); Serial.println(USB_PRODUCT);
-    Serial.print("  Serial: "); Serial.println(USB_SERIAL);
+    Serial.print("  Serial (static): "); Serial.println(USB_SERIAL);
+    Serial.print("  Serial (FICR): "); Serial.println(generate_serial_from_ficr());
+  } else if (strcmp(cmd, "/ficr") == 0) {
+    Serial.println("🧬 FICR DeviceID:");
+    Serial.print("  DEVICEID[1]: 0x"); Serial.println((uint32_t)NRF_FICR->DEVICEID[1], HEX);
+    Serial.print("  DEVICEID[0]: 0x"); Serial.println((uint32_t)NRF_FICR->DEVICEID[0], HEX);
   } else if (strncmp(cmd, "/echo", 5) == 0) {
     const char* arg = cmd + 6;
     if (strcmp(arg, "on") == 0) {
