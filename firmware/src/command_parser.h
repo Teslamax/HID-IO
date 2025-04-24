@@ -1,0 +1,1 @@
+void parse_command(const char* cmd);
