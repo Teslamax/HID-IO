@@ -111,27 +111,3 @@ hid-io/
 ## 🧾 License
 
 MIT License. © You.
-
-```
-
----
-
-Would you like this with:
-- Your GitHub username or a custom badge?
-- Placeholder demo GIF or diagram block?
-- A matching `platformio.ini` with proper USB descriptors set?
-
-Let’s polish it up and push it live!
-
-
-
-
-
-
-
-
-# hid-io
-
-**hid-io** is a USB HID + CDC composite device providing an RGB status LED and button input for headless Raspberry Pi systems. It offers a shared command interface for both USB serial and HID OUT communication methods.
-
-See `firmware/` for Arduino IDE or PlatformIO-based firmware.
