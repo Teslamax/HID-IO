@@ -2,7 +2,7 @@
 
 **HID-IO** is a USB-based I/O interface for headless systems (like Raspberry Pi), providing a simple **pushbutton input** and a fully-controllable **RGB status LED** over a **composite USB HID + CDC interface**.
 
-- [nRF52840 MDK USB Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/)
+- [nRF52840 MDK USB Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/) ([Nordic Semiconductor nRF52840](https://www.nordicsemi.com/Products/nRF52840))
 
 It is designed for service monitoring, status indication, and user interaction in environments where GPIO access is unavailable or undesirable.
 
